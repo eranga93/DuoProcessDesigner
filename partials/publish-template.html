@@ -1,0 +1,58 @@
+<md-dialog class="dialogdemoBasicUsage" aria-label="Publish Workflow">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <div class="dialogicon">
+                <ng-md-icon icon="forward" style="fill:white" size="32"></ng-md-icon>
+            </div>
+            <h2>
+              <span>Publish Workflow</span>
+            </h2>
+            <span flex></span>
+            <md-button class="closebtn md-icon-button" aria-label="More">
+                <ng-md-icon ng-click="cancel()" icon="close" style="fill:white" size="32"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-content>
+        <div layout="row" layout-align="center start">
+            <div flex>
+                <p class="md-body-1">Select or enter a new process code to map this workflow.</p>
+                <md-input-container flex>
+                    <label>Search process codes</label>
+                    <input ng-model="searchitem">
+                </md-input-container>
+                <md-list flex>
+                    <md-item ng-repeat="item in processlist | filter : searchitem">
+                        <md-item-content md-ink-ripple class="listselecter" ng-click="open(item)">
+                            <div class="md-tile-left">
+                                <ng-md-icon icon="{{item.Icon}}" class="bottomsheetbuttons" size="40"></ng-md-icon> 
+                            </div>
+                            <div class="md-tile-content">
+                                <h4>{{item.Name}}</h4>
+                                <p>{{item.Description}}</p>
+                            </div>
+                        </md-item-content>
+                    </md-item>
+                </md-list>
+            </div>
+        </div>
+    </md-content>
+    <md-content>
+        <div layout="row">
+            <md-input-container flex>
+                <label>Process Code</label>
+                <input md-maxlength="50" required name="code" ng-model="process.code">
+                <div ng-messages="process.code.$error">
+                    <div ng-message="required">Process code is required.</div>
+                </div>
+            </md-input-container>
+        </div>
+    </md-content>
+    
+    <div class="md-actions" layout="row">
+        <md-button ng-click="cancel()" class="md-primary">Close</md-button>
+        <md-button ng-click="open(process,$event)" class="md-primary">Publish</md-button>
+    </div>
+</md-dialog>

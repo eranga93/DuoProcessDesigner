@@ -1,0 +1,351 @@
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: sans-serif;
+    margin: 0px;
+    padding: 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* The following is regarding the plumb styles*/
+
+#container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/appBackground.png");
+    /*background-size: 80px 80px;*/
+    /*zoom: 100%;*/
+    
+    overflow: auto;
+}
+
+#uicontainer {
+    position: absolute;
+    overflow: auto;
+    height: 100%;
+}
+/* toolbox control styling*/
+
+md-sidenav.md-locked-open {
+    min-width: 45px;
+    max-width: 45px;
+    height: 100%;
+}
+
+#toolboxControl {
+    left: -350px;
+    width: 300px;
+    height: 100%;
+    /*float: left;*/
+    
+    position: absolute;
+    /*display: block;*/
+    
+    background-color: white;
+    z-index: 21;
+    -webkit-box-shadow: 0 4px 20px lightgray;
+    -moz-box-shadow: 0 4px 20px lightgray;
+    box-shadow: 0 4px 20px lightgray;
+    overflow: hidden;
+}
+
+#topnavigation {
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+#loading {
+    display:flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: white;
+    z-index: 100;
+}
+
+#windowloading {
+    display:flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: white;
+    z-index: 100;
+}
+
+#loading p{
+    font-family: monospace;
+    font-size: 20px;
+}
+
+#backgroundimg{
+    /*background-image: url(../images/loading.gif);
+    min-width: 100%;
+    min-height: 100%;
+    background-repeat: no-repeat;*/
+}
+
+#breadcrumb {
+    display: inline-block;
+    position: fixed;
+    background-color: white;
+    padding: 5px;
+    /*width: 100%;*/
+    
+    z-index: 7;
+    font-size: 13px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    /*border-radius: 5px;*/
+}
+
+#toolboxheader {
+    /*display: block;*/
+}
+
+#toolboxcontent {
+    height: calc(100% - 64px);
+    display: block;
+    overflow: hidden;
+    min-width: 270px;
+}
+
+.tcontent {
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.menu-item {
+    margin: 0px;
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    /*background-color: #ECECEC;*/
+    /*display: block;*/
+    /*border-bottom: 1px solid #DEDEDE; */
+}
+
+.menu-item2 {
+    position: absolute;
+    border: 1px solid black;
+    width: 150px;
+    font-size: 80%;
+    background-color: #FFFFFF;
+    text-align: center;
+    -moz-box-shadow: 2px 2px 3px 1px #AAA;
+    -webkit-box-shadow: 2px 2px 3px 1px #AAA;
+    box-shadow: 2px 2px 3px 1px #AAA;
+}
+
+.toolitem:hover{
+    background-color: lightgray;
+}
+
+.toolheader {
+    height: 15px;
+    width: 15px;
+    margin-left: 10px;
+}
+
+.toolcontent {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.tooldivider {
+    font-weight: bold;
+    padding: 5px;
+    margin-left: 5px;
+}
+/**************************************************************/
+
+.summary {
+    padding: 10px;
+    cursor: move;
+    font-weight: bold;
+    font-size: 120%;
+}
+/*.menu-item {
+    position: absolute;        
+    border: 1px solid black;
+    width: 150px;
+    font-size: 80%;
+    background-color:#FFFFFF;
+    text-align: center;
+    -moz-box-shadow: 2px 2px 3px 1px #AAA;
+    -webkit-box-shadow: 2px 2px 3px 1px #AAA;
+    box-shadow: 2px 2px 3px 1px #AAA;
+}*/
+
+#menu-container {
+    float: left;
+    border: 2px solid gray;
+    border-right: 4px solid gray;
+    width: 200px;
+    height: 497px;
+    background-color: #F3F2F4;
+}
+
+#variablelist {}
+
+.valiableitem {
+    padding: 3px;
+    background-color: #ECECEC;
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.varibaleKey {
+    color: #727272;
+    font-size: 11px;
+    margin-left: 3px;
+    position: absolute;
+}
+
+.variableValue {
+    width: 100%;
+    font-size: 12px;
+}
+
+#variableTools {
+    background-color: white;
+    padding: 7px;
+}
+/*************************************************************************************************************/
+
+.tabs {
+    width: 100%;
+    display: inline-block;
+    position: fixed;
+    top: 50px;
+}
+/*----- Tab Links -----*/
+/* Clearfix */
+
+.tab-links {
+    margin: 0px;
+}
+
+.tab-links:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.tab-links li {
+    margin: 0px 2px;
+    float: left;
+    list-style: none;
+    font-size: 10px;
+}
+
+.tab-links a {
+    padding: 9px 15px;
+    display: inline-block;
+    border-radius: 3px 3px 0px 0px;
+    background: black;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    transition: all linear 0.15s;
+}
+
+.tab-links a:hover {
+    background: #df191a;
+    color: black;
+    text-decoration: none;
+}
+
+li.active a,
+li.active a:hover {
+    background: #B6B6B6;
+    color: black;
+}
+/*----- Content of Tabs -----*/
+
+.tab-content {
+    padding: 0px;
+    border-radius: 3px;
+    box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
+    background: #fff;
+}
+
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+}
+
+[ng\:cloak],
+[ng-cloak],
+.ng-cloak {
+    display: none;
+}
+
+.dialogdemoBasicUsage .dialogDemo1 {
+    height: 500px;
+}
+
+.dialogdemoBasicUsage .full {
+    width: 100%;
+    height: 100%;
+}
+
+.dialogdemoBasicUsage .gap {
+    width: 50px;
+}
+
+.dialogdemoBasicUsage .dialogicon {
+    padding-right: 12px;
+}
+
+.dialogdemoBasicUsage .closebtn {
+    float: right;
+    width: 50px;
+}
+
+.dialogdemoBasicUsage .md-toolbar-tools {
+    /*background-color: #3f51b5;
+    background-color: lightgray;
+    color: black;
+    font-weight: bold;
+    */
+}
+
+.dialogdemoBasicUsage h2.md-subheader.md-sticky-clone {
+    margin-right: 0px;
+    margin-top: 0px;
+    box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.16);
+}
+
+.dialogdemoBasicUsage h2 .md-subheader-content {
+    padding-left: 10px;
+}
+
+.dialogdemoBasicUsage {
+    /*min-width: 50px;*/
+    /*max-height: 450px;*/
+    
+    min-width: 500px;
+}
+
+.activitycolumn {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.activitycontent {
+    padding: 0px 0px 0px 20px;
+}
+
+.listselecter {
+    cursor: pointer;
+}

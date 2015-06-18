@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:v="urn:schemas-microsoft-com:vml" lang="en">
+
+<head>
+    <title>Duo Process Designer</title>
+    <link rel="shortcut icon" href="https://duosoftware.atlassian.net/s/en_US-qcixes/65001/22/_/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" type="text/css"/>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/controlstyle.css" />
+    <link rel="stylesheet" href="css/accordian.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/tabs.css" />
+</head>
+
+<body ng-app="processdesigner" ng-controller="mainController" layout="row" layout-fill>
+    
+    <!--<md-toolbar id="topnavigation">
+      <div layout="row" class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings">
+          <ng-md-icon icon="menu"></ng-md-icon>
+        </md-button>
+        <h2>
+          <span>Duo Process Designer</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Favorite">
+          <ng-md-icon icon="favorite"></ng-md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="More">
+          <ng-md-icon icon="more"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>-->
+    
+    <div id="loading" layout="column" layout-align="center center">
+        <div>
+            <img src="images/loading.gif" />
+        </div>
+        <div id="busycontent"><p>Getting your Environment ready!</p></div>
+    </div>
+    
+    <md-sidenav id="toolbox" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
+
+        <md-list>
+            <md-item ng-repeat="item in menu">
+                <a ng-click="mainMenuClick($index,$event)">
+                    <md-item-content class="toolitem" md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                            <md-tooltip md-direction="right">{{item.title}}</md-tooltip>
+                        </div>
+
+                    </md-item-content>
+                    <md-divider></md-divider>
+                </a>
+            </md-item>
+           
+            <md-item ng-repeat="item in admin">
+                <a ng-click="adminMenuClick($index,$event)">
+                    <md-item-content class="toolitem" md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                            <md-tooltip md-direction="right">{{item.title}}</md-tooltip>
+                        </div>
+                    </md-item-content>
+                    <md-divider></md-divider>
+                </a>
+            </md-item>
+            
+            <!--<md-item>
+                <a ng-click="changeState('drawboard')">
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="call_received"></ng-md-icon>
+                            <md-tooltip md-direction="right">Back to Drawboard</md-tooltip>
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-item>-->
+            <!--<md-item>
+                <a ng-click="changeState('other')">
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="call_made"></ng-md-icon>
+                            <md-tooltip md-direction="right">Other</md-tooltip>
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-item>-->
+            <!--<md-item>
+                <a ng-click="testMethod('This is the text')">
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="trending_down"></ng-md-icon>
+                            <md-tooltip md-direction="right">Other</md-tooltip>
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-item>
+            <md-item>
+                <a ng-click="changeserviceData('shenic')">
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="trending_up"></ng-md-icon>
+                            <md-tooltip md-direction="right">Other</md-tooltip>
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-item>-->
+        </md-list>
+    </md-sidenav>
+
+    <section layout="column" class="relative" layout-fill role="main">
+        <md-content flex>
+
+            <div id="toolboxControl" class="panel-show-hide">
+                <div id="toolboxheader">
+                    <md-toolbar>
+                        <div layout="row">
+                            <div flex="80">
+                                <h1 class="md-toolbar-tools">Toolbox</h1>
+                            </div>
+                            <div flex="20" layout="column" layout-align="center center">
+                                <md-button ng-click="closeBox()">
+                                    <ng-md-icon id="settingsicon" icon="menu" class="mainsvg" size="32"></ng-md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                    </md-toolbar>
+                </div>
+                <div id="toolboxcontent" ng-scrollbars ng-scrollbars-config="scrollbarconfig">
+                    <section class="tcontent">
+                        <md-list>
+                            <md-subheader class="tooldivider md-primary">Toolbox</md-subheader>
+                            <md-input-container>
+                            <label>Search Toolbox</label>
+                            <input ng-model="toolboxsearch">
+                        </md-input-container>
+                            <md-item ng-repeat="x in library | filter : { Category: 'flowcontrol' } | filter : toolboxsearch">
+                                <a>
+                                    <md-item-content md-ink-ripple layout="row" >
+                                        <div layout="row" plumb-menu-item="" class="menu-item" data-identifier="{{x.library_id}}" data-title="{{x.Name}}" draggable="">
+                                            <div layout="column" layout-align="center center">
+                                                <ng-md-icon class="toolheader" icon="{{x.Icon}}" size="15"></ng-md-icon>
+                                            </div>
+                                            <div layout="column" layout-align="center center">
+                                                <div class="toolcontent">
+                                                    {{x.Name}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-item-content>
+                                </a>
+                            </md-item>
+                        </md-list>
+                    </section>
+                    <section class="tcontent">
+                        <md-subheader class="tooldivider md-primary">Assignments</md-subheader>
+                        <md-list>
+                            <md-item ng-repeat="x in library | filter : { Category: 'assignments' }">
+                                <a>
+                                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                                        <div layout="row" plumb-menu-item="" class="menu-item" data-identifier="{{x.library_id}}" data-title="{{x.Name}}" draggable="">
+                                            <div layout="column" layout-align="center center">
+                                                <ng-md-icon class="toolheader" icon="{{x.Icon}}" size="15"></ng-md-icon>
+                                            </div>
+                                            <div layout="column" layout-align="center center">
+                                                <div class="toolcontent">
+                                                    {{x.Name}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-item-content>
+                                </a>
+                            </md-item>
+                        </md-list>
+                    </section>
+                    <section class="tcontent">
+                        <md-subheader class="tooldivider md-primary">Messaging Controls</md-subheader>
+                        <md-list>
+                            <md-item ng-repeat="x in library | filter : { Category: 'messaging' }">
+                                <a>
+                                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                                        <div layout="row" plumb-menu-item="" class="menu-item" data-identifier="{{x.library_id}}" data-title="{{x.Name}}" draggable="">
+                                            <div layout="column" layout-align="center center">
+                                                <ng-md-icon class="toolheader" icon="{{x.Icon}}" size="15"></ng-md-icon>
+                                            </div>
+                                            <div layout="column" layout-align="center center">
+                                                <div class="toolcontent">
+                                                    {{x.Name}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-item-content>
+                                </a>
+                            </md-item>
+                        </md-list>
+                    </section>
+                    <section class="tcontent">
+                        <md-subheader class="tooldivider md-primary">Collections</md-subheader>
+                        <md-list>
+                            <md-item ng-repeat="x in library | filter : { Category: 'collections' }">
+                                <a>
+                                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                                        <div layout="row" plumb-menu-item="" class="menu-item" data-identifier="{{x.library_id}}" data-title="{{x.Name}}" draggable="">
+                                            <div layout="column" layout-align="center center">
+                                                <ng-md-icon class="toolheader" icon="{{x.Icon}}" size="15"></ng-md-icon>
+                                            </div>
+                                            <div layout="column" layout-align="center center">
+                                                <div class="toolcontent">
+                                                    {{x.Name}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-item-content>
+                                </a>
+                            </md-item>
+                        </md-list>
+                    </section>
+                    <section class="tcontent">
+                        <md-subheader class="tooldivider md-primary">Activities</md-subheader>
+                        <md-input-container>
+                            <label>Search Activities</label>
+                            <input ng-model="controlsearch">
+                        </md-input-container>
+                        <md-list>
+                            <md-item ng-repeat="x in activitylist | filter : controlsearch">
+                                <a>
+                                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                                        <div layout="row" plumb-menu-item="" class="menu-item" data-identifier="{{x.library_id}}" data-title="{{x.Name}}" draggable="">
+                                            <div layout="column" layout-align="center center">
+                                                <ng-md-icon class="toolheader" icon="{{x.Icon}}" size="15"></ng-md-icon>
+                                            </div>
+                                            <div layout="column" layout-align="center center">
+                                                <div class="toolcontent">
+                                                    {{x.Name}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-item-content>
+                                </a>
+                            </md-item>
+                        </md-list>
+                    </section>
+                </div>
+
+            </div>
+            
+            <!--<div id="breadcrumb"><p><a href="#">MainPage</a> > <a href="#">iFCondition</a></p></div>-->
+
+            <div id="uicontainer" layout="column" layout-fill><div id="container" class="container" droppable=""></div></div>
+            
+        </md-content>
+
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+            <md-toolbar class="md-theme-light">
+                <h1 class="md-toolbar-tools">{{selectedModule.Name}} : Settings</h1>
+            </md-toolbar>
+
+
+            <div class="tabsdemoStaticTabs sample">
+                <md-tabs class="md-accent" md-selected="tabdata.selectedIndex">
+                    <md-tab id="tab1" aria-controls="tab1-content" ng-disabled="tabdata.propertiesLocked">
+                        Properties
+                    </md-tab>
+                    <md-tab id="tab2" aria-controls="tab2-content" ng-disabled="tabdata.manageLocked">
+                        Manage
+                    </md-tab>
+                </md-tabs>
+                <ng-switch on="tabdata.selectedIndex" class="tabpanel-container" ng-scrollbars ng-scrollbars-config="scrollbarconfig">
+                    <div role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()">
+
+                        <div id="variableControlFunctions">
+                            <div layout="row" flex>
+                                <md-button flex ng-hide="selectedModule.ControlEditDisabled" ng-click="showAddVariableWindow($event)" class="md-raised">Add Variable</md-button>
+                            </div>
+                            <div layout="row" flex>
+                                <md-button flex ng-hide="selectedModule.ControlEditDisabled" ng-click="clearVariables($event)" class="md-raised">Clear</md-button>
+                            </div>
+                        </div>
+                        <div id="variableControlData">
+                            <div ng-repeat="variable in selectedModule.Variables">
+                                <!--<div class="varibaleKey">{{variable.Key}}</div>
+                        <md-button class="closeBtn">
+                            <ng-md-icon icon="cancel" size="15" ng-hide="selectedModule.ControlEditDisabled" ng-click="removePair(variable)"></ng-md-icon> 
+                        </md-button>-->
+                                <md-input-container flex>
+                                    <label>{{variable.Key}}</label>
+                                    <input ng-model="variable.Value">
+                                </md-input-container>
+
+                                <!--<variable-control variableobj="selectedModule" ></variable-control>-->
+
+                                <!--<div class="varibaleKey">{{variable.Key}}</div>
+                        <md-button class="closeBtn">
+                            <ng-md-icon icon="cancel" size="15" ng-hide="selectedModule.ControlEditDisabled" ng-click="removePair(variable)"></ng-md-icon> 
+                        </md-button>
+                        <div demo-directive variableobj="variable"></div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" id="tab2-content" aria-labelledby="tab2" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()">
+
+                        <div>
+                            <div layout="row" flex>
+                                <md-button flex class="md-raised">Duplicate</md-button>
+                            </div>
+                            <div layout="row" flex>
+                                <md-button flex ng-click="removeControl(selectedModule,$event)" class="md-raised md-warn">Remove</md-button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-switch>
+            </div>
+
+
+        </md-sidenav>
+
+    </section>
+
+
+    <script type="text/javascript" src="bower_components/jquery/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/jqueryui/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="bower_components/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>
+    <script type="text/javascript" src="bower_components/angular-material-icons/angular-material-icons.js"></script>
+
+    <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jsPlumb-1.4.1-all.js"></script>
+
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/routes.js"></script>
+    <script type="text/javascript" src="js/runtimedatastore.js"></script>
+    <script type="text/javascript" src="js/SaveController.js"></script>
+    <script type="text/javascript" src="js/MessageController.js"></script>
+    <script type="text/javascript" src="js/ActivityController.js"></script>
+    <script type="text/javascript" src="js/OpenController.js"></script>
+    <script type="text/javascript" src="js/VariableController.js"></script>
+    <script type="text/javascript" src="js/PublishController.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <!--<script type="text/javascript" src="/uimicrokernel/uimicrokernel.js"></script>-->
+    <script type="text/javascript" src="http://dw.duoweb.info/uimicrokernel/uimicrokernel.js"></script>
+
+    <script type="text/javascript" src="directives/plumbItem.js"></script>
+    <script type="text/javascript" src="directives/variableControl.js"></script>
+    <script type="text/javascript" src="directives/demoDirective.js"></script>
+
+    
+    <span ng-init="init()"></span>
+</body>
+
+</html>

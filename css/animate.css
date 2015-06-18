@@ -1,0 +1,40 @@
+.ng-enter{
+    transition: 0.2s;
+    opacity: 0;
+}
+
+.ng-enter-stagger{
+    transition-delay: 1s;
+}
+
+.ng-enter-active{
+    opacity: 1;
+}
+
+.ng-leave{
+    transition: 0.2s;
+    opacity: 1;
+}
+
+.ng-leave-stagger{
+    transition-delay: 1s;
+}
+
+.ng-leave-active{
+    opacity: 1;
+}
+
+
+.panel-show-hide {
+  transition: 0.2s;
+    opacity: 0;
+}
+
+.panel-show-hide {
+  transition: 0.2s;
+    opacity: 1;
+}
+
+.panel-show-hide.ng-hide {
+  opacity:0;
+}

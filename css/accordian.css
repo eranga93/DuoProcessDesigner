@@ -1,0 +1,31 @@
+/** according styles */
+
+#accordion{width:100%;}
+#accordion ul{list-style:none;margin:0;padding:0;}
+.accordion{display:none;}
+.accordion:target{display:block;}
+#accordion ul li a{text-decoration:none;display:block;padding:10px;}
+.accordion{padding:0px;}
+
+
+
+
+
+/*  Colors 
+====================*/
+#accordion ul{
+
+}
+#accordion ul li a{
+background:#fff;
+border-bottom:1px solid #E0E0E0;
+color:#999;
+}
+.accordion{
+    background:#fdfdfd;
+    color:#999;
+    padding: 0px;
+}
+.accordion:target{
+    border-top:3px solid lightgray;
+}

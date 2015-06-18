@@ -1,0 +1,152 @@
+.itemfdf {
+    min-width: 50px;
+    overflow: visible;
+    position: absolute;
+    border: 1px solid grey;
+    padding: 5px;
+    -webkit-box-shadow: 0 4px 10px #818181;
+    -moz-box-shadow: 0 4px 10px #818181;
+    box-shadow: 0 4px 10px #818181;
+}
+
+.container .item {
+    min-width: 50px;
+    cursor: move;
+    border: 1px solid grey;
+    /*box-shadow: 2px 2px 10px #aaa;
+     -o-box-shadow: 2px 2px 10px #aaa;
+     -webkit-box-shadow: 2px 2px 10px #aaa;
+     -moz-box-shadow: 2px 2px 10px #aaa;
+  -moz-border-radius:0.5em;*/
+    /*border-radius:0.5em;*/
+    /*opacity:0.8;
+  filter:alpha(opacity=80);*/
+    
+    z-index: 6;
+    position: absolute;
+    text-align: center;
+    /*background-color:#eeeeef;*/
+    
+    color: black;
+    font-family: helvetica;
+    padding: 3px;
+    font-size: 0.9em;
+    font-weight: normal;
+}
+
+.item:hover {
+    box-shadow: 0px 0px 10px #aaa;
+    -o-box-shadow: 0px 0px 10px #aaa;
+    -webkit-box-shadow: 0px 0px 10px #aaa;
+    -moz-box-shadow: 0px 0px 10px #aaa;
+    -moz-border-radius: 0.5em;
+    /*opacity:0.6;
+	filter:alpha(opacity=60);*/
+}
+
+.defaultitem {
+    background-color: #BDC3C7;
+    border-radius: 4px;
+}
+
+.start,
+.stop {
+    background-color: #F89406;
+    border-radius: 50px;
+}
+
+.controltwo {
+    background-color: #BF55EC;
+}
+
+.activity {
+    background-color: limegreen;
+    border-radius: 4px;
+}
+
+.profile {
+    background-color: limegreen;
+    border-radius: 4px;
+}
+
+.global_variables {
+    background-color: #5C97BF;
+    border-radius: 4px;
+}
+
+.if {
+    background: #1abc9c;
+}
+
+.title {
+    display: inline-block;
+    padding: 7px;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.endpointSourceLabel {
+    font-size: 13px;
+    color: gray;
+}
+
+.ifcontent {
+    background: white;
+    width: 400px;
+    height: 200px;
+    position: relative;
+}
+
+.connect {
+    display: inline-block;
+    padding: 7px;
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.variables {
+    display: inline-block;
+    float: left;
+    width: 15px;
+    height: 15px;
+    background-color: yellow;
+    cursor: pointer;
+}
+
+.container ._jsPlumb_connector {
+    z-index: 4;
+}
+
+.container ._jsPlumb_endpoint,
+.endpointTargetLabel,
+.endpointSourceLabel {
+    z-index: 5;
+    cursor: pointer;
+}
+
+/*svg{
+    cursor: pointer;
+}*/
+/*svg path{
+    pointer-events: visibleStroke;
+    stroke: rgb(97, 183, 207);
+    stroke-width: 1px;
+    stroke-linejoin: round;
+}*/
+
+.mainsvg {
+    fill: white;
+}
+
+.bottomsheetbuttons {
+    fill: #3f51b5;
+}
+
+.jsPlumb_dragged {
+    cursor: cell;
+}

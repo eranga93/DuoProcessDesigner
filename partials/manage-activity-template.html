@@ -1,0 +1,73 @@
+<md-dialog class="dialogdemoBasicUsage" aria-label="Manage Activities">
+    <div id="windowloading" layout="column" layout-align="center center">
+        <div>
+            <img src="images/loading.gif" />
+        </div>
+        <div id="busycontent"><p>Retrieving workflow details</p></div>
+    </div>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <div class="dialogicon">
+                <ng-md-icon icon="swap_vert_circle" style="fill:white" size="32"></ng-md-icon>
+            </div>
+            <h2>
+              <span>Manage Activities</span>
+            </h2>
+            <span flex></span>
+            <md-button class="closebtn md-icon-button" aria-label="More">
+              <ng-md-icon ng-click="cancel()" icon="close" style="fill:white" size="32"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content>
+        <div layout="row" layout-align="center start">
+            <div flex>
+                <md-input-container flex>
+                    <label>Search Activities</label>
+                    <input ng-model="searchitem">
+                </md-input-container>
+                <md-list flex>
+                    <md-item ng-repeat="item in activitylist | filter : searchitem">
+                        <md-item-content md-ink-ripple class="listselecter" ng-click="open(item)">
+                            <div class="md-tile-left">
+                                <ng-md-icon icon="{{item.Icon}}" class="bottomsheetbuttons" size="40"></ng-md-icon> 
+                            </div>
+                            <div class="md-tile-content">
+                                <h4>{{item.Name}}</h4>
+                                <p>{{item.Description}}</p>
+                            </div>
+                        </md-item-content>
+                    </md-item>
+                </md-list>
+            </div>
+        </div>
+    </md-content>
+    <md-content>
+        <div layout="column">
+            <div>
+                <md-input-container>
+                    <label>Activity Name</label>
+                    <input md-maxlength="50" required name="name" ng-model="activity.Name">
+                    <div ng-messages="activity.name.$error">
+                        <div ng-message="required">Activity name is required.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container>
+                    <label>Description</label>
+                    <input required name="description" ng-model="activity.Description">
+                    <div ng-messages="activity.description.$error">
+                        <div ng-message="required">A description is required.</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </div>
+    </md-content>
+    <div class="md-actions" layout="row">
+        <md-button ng-click="cancel()">Close</md-button>
+        <md-button ng-disabled="true" ng-click="remove($event)">Remove</md-button>
+        <md-button ng-disabled="true" ng-click="update($event)">Update</md-button>
+        <md-button ng-click="save(activity,$event)" class="md-primary">Insert</md-button>
+    </div>
+</md-dialog>
