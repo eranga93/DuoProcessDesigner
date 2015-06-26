@@ -1,0 +1,19 @@
+<md-dialog ng-controller="mainController">
+
+<h1 style="padding-left:25px">Oooops!!</h1>
+
+<md-dialog-content style="padding:24px">
+
+	<p>the workflow couldn't publish!</p>
+
+<div ng-class="{ activee: !$activee }" style="background-color: lightgrey;
+    padding: 15px;">
+	{{message}}
+</div>
+</md-dialog-content>
+<div class="md-actions" layout="row">
+<md-button ng-click="$activee = !$activee" ng-show="$activee">see less</md-button>
+<md-button ng-click="$activee = !$activee" ng-show="!$activee">see more</md-button>
+<md-button ng-click="hide()">GOT IT!</md-button>
+</div>
+</md-dialog>

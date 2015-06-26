@@ -1039,7 +1039,7 @@ app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', 
     $scope.showDialog = function (ev, message, title) {
         $mdDialog.show({
              controller: DialogController,
-              templateUrl: 'partials/publish_success.html',
+              templateUrl: title,
                parent: angular.element(document.body),
               targetEvent: ev,
               locals : {
@@ -1094,9 +1094,9 @@ function DialogController($scope, $mdDialog, message) {
         $http.get(actualURL).
         success(function (data, status, headers, config) {
             if (data.Status) {
-                $scope.showDialog(event, data.Message, "Success!!");
+                $scope.showDialog(event, data.Message, 'partials/publish_success.html');
             } else {
-                $scope.showAlert(event, data.Message, "Opps..");
+                $scope.showDialog(event, data.Message, 'partials/publish_fail.html');
             }
             $scope.HideBusyContainer();
             /*$mdDialog.show(
