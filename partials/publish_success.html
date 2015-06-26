@@ -2,14 +2,14 @@
 
 <h1 style="padding-left:25px">Success!!</h1>
 
-<md-dialog-content style="padding:24px">
+<md-dialog-content style="padding:24px" layout="column">
 
-	<p>the workflow was sucessfully published!</p>
+	<p style="padding:15px">the workflow was sucessfully published!</p>
 
-<div ng-class="{ activee: !$activee }" style="background-color: lightgrey;
-    padding: 15px;">
-	 <p ng-bind-html="message"></p>
-</div>
+
+	 <p ng-class="{ activee: !$activee }" style="background-color: lightgrey;
+    padding: 15px; overflow:auto;" ng-bind-html="message"></p>
+
 </md-dialog-content>
 <div class="md-actions" layout="row">
 <md-button ng-click="$activee = !$activee" ng-show="$activee">see less</md-button>
