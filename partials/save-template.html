@@ -1,5 +1,5 @@
 <md-dialog class="dialogdemoBasicUsage" aria-label="Save Workflow">
-    <form name="savedialog">
+    <form name="savedialog" novalidate>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <div class="dialogicon">
@@ -20,8 +20,8 @@
                     <md-input-container flex>
                         <label>Workflow Name</label>
                         <input md-maxlength="50" required name="name" ng-model="process.name">
-                        <div ng-messages="savedialog.name.$error">
-                            <div ng-message="required">Workflow name is required.</div>
+                        <div ng-messages>
+                            <div ng-message="required" ng-if="savedialog.name.$invalid && savedialog.name.$dirty">Workflow name is required.</div>
                         </div>
                     </md-input-container>
                     <md-input-container flex>
@@ -34,7 +34,7 @@
         <span flex></span>
         <div class="md-actions" layout="row">
             <md-button ng-click="cancel()">Close</md-button>
-            <md-button class="md-primary" type="submit" ng-click="save(process,$event)">Save</md-button>
+            <md-button class="md-primary" type="submit" ng-disabled="savedialog.name.$invalid" ng-click="save(process,$event)">Save</md-button>
         </div>
     </form>
 </md-dialog>

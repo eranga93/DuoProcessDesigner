@@ -148,5 +148,5 @@
 }
 
 .jsPlumb_dragged {
-    cursor: cell;
+    cursor: -webkit-grabbing;
 }

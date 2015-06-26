@@ -161,7 +161,7 @@ md-sidenav.md-locked-open {
 
 .tooldivider {
     font-weight: bold;
-    padding: 5px;
+    /*padding: 5px;*/
     margin-left: 5px;
 }
 /**************************************************************/
@@ -348,4 +348,14 @@ li.active a:hover {
 
 .listselecter {
     cursor: pointer;
+}
+
+.activee {
+    visibility: hidden;
+    height:0px;
+    width:0px;
+}
+
+.settings-button {
+    padding:10px;
 }

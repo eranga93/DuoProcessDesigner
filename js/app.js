@@ -182,6 +182,10 @@ app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', 
         scrollInertia: 300
     }
 
+    $('#era').mCustomScrollbar({
+        theme:"dark-3"
+    });
+
     $scope.displayToolbox = true;
     $scope.loadedProcessObj = null;
     $scope.library = [];
@@ -992,8 +996,8 @@ app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', 
 
     $scope.clearFlowChart = function (ev) {
         var confirm = $mdDialog.confirm()
-            .title('Are you sure?')
-            .content('All of the content of the canvas will be removed. Are you sure you want to continue?')
+            .title('Are you sure mate?')
+            .content('All the content on the canvas will be removed. cannot revert this action once done!')
             .ariaLabel('Lucky day')
             .ok('Please do it!')
             .cancel('OMG! No')
@@ -1032,6 +1036,31 @@ app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', 
         );
     };
 
+    $scope.showDialog = function (ev, message, title) {
+        $mdDialog.show({
+             controller: DialogController,
+              templateUrl: 'partials/publish_success.html',
+               parent: angular.element(document.body),
+              targetEvent: ev,
+              locals : {
+                    message : message
+                }
+        });
+    };
+
+function DialogController($scope, $mdDialog, message) {
+    $scope.message = message;
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+};
+
     $scope.showToast = function (message) {
         $mdToast.show(
             $mdToast.simple()
@@ -1065,7 +1094,7 @@ app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', 
         $http.get(actualURL).
         success(function (data, status, headers, config) {
             if (data.Status) {
-                $scope.showAlert(event, data.Message, "Yess!!");
+                $scope.showDialog(event, data.Message, "Success!!");
             } else {
                 $scope.showAlert(event, data.Message, "Opps..");
             }
@@ -1427,6 +1456,11 @@ app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', 
             link: '',
             title: 'Settings',
             icon: 'settings'
+    },
+        {
+            link: '',
+            title: 'Help',
+            icon: 'help'
     }
   ];
 

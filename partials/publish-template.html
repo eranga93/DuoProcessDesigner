@@ -40,19 +40,24 @@
         </div>
     </md-content>
     <md-content>
+    <form name="processForm" novalidate>
         <div layout="row">
             <md-input-container flex>
                 <label>Process Code</label>
                 <input md-maxlength="50" required name="code" ng-model="process.code">
-                <div ng-messages="process.code.$error">
-                    <div ng-message="required">Process code is required.</div>
-                </div>
+                     <div ng-messages>
+                        <div ng-message="required" ng-if="processForm.code.$dirty && processForm.code.$invalid">This is required.</div>
+
+                    </div>
+
+
             </md-input-container>
         </div>
     </md-content>
     
     <div class="md-actions" layout="row">
         <md-button ng-click="cancel()" class="md-primary">Close</md-button>
-        <md-button ng-click="open(process,$event)" class="md-primary">Publish</md-button>
+        <md-button ng-click="open(process,$event)" ng-disabled="processForm.code.$invalid" class="md-primary">Publish</md-button>
     </div>
+    </form>
 </md-dialog>

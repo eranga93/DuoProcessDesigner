@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/accordian.css" />
     <link rel="stylesheet" href="css/animate.css" />
     <link rel="stylesheet" href="css/tabs.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 </head>
 
 <body ng-app="processdesigner" ng-controller="mainController" layout="row" layout-fill>
@@ -44,7 +45,21 @@
     
     <md-sidenav id="toolbox" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
 
-        <md-list>
+        <md-list style="padding:0px">
+
+            <md-item >
+                <a ng-click="">
+                    <md-item-content class="toolitem" md-ink-ripple layout="row" layout-align="start center" style="background-color: rgb(63, 81, 181)">
+                        <div class="inset">
+                            <ng-md-icon icon=""></ng-md-icon>
+                            <md-tooltip md-direction="right">Duo Process Designer</md-tooltip>
+                        </div>
+
+                    </md-item-content>
+                    <md-divider></md-divider>
+                </a>
+            </md-item>
+
             <md-item ng-repeat="item in menu">
                 <a ng-click="mainMenuClick($index,$event)">
                     <md-item-content class="toolitem" md-ink-ripple layout="row" layout-align="start center">
@@ -116,12 +131,12 @@
     <section layout="column" class="relative" layout-fill role="main">
         <md-content flex>
 
-            <div id="toolboxControl" class="panel-show-hide">
-                <div id="toolboxheader">
-                    <md-toolbar>
+            <div id="toolboxControl" class="panel-show-hide" >
+                <div id="toolboxheader" >
+                    <md-toolbar style="min-height:48px !important">
                         <div layout="row">
                             <div flex="80">
-                                <h1 class="md-toolbar-tools">Toolbox</h1>
+                                <h1 class="md-toolbar-tools" style="height:48px">Toolbox</h1>
                             </div>
                             <div flex="20" layout="column" layout-align="center center">
                                 <md-button ng-click="closeBox()">
@@ -131,11 +146,11 @@
                         </div>
                     </md-toolbar>
                 </div>
-                <div id="toolboxcontent" ng-scrollbars ng-scrollbars-config="scrollbarconfig">
+                <div id="toolboxcontent" ng-scrollbars ng-scrollbars-config="scrollbarconfig" >
                     <section class="tcontent">
                         <md-list>
                             <md-subheader class="tooldivider md-primary">Toolbox</md-subheader>
-                            <md-input-container>
+                            <md-input-container style="padding: 10px; padding-top: 0px;">
                             <label>Search Toolbox</label>
                             <input ng-model="toolboxsearch">
                         </md-input-container>
@@ -222,7 +237,7 @@
                     </section>
                     <section class="tcontent">
                         <md-subheader class="tooldivider md-primary">Activities</md-subheader>
-                        <md-input-container>
+                        <md-input-container style="padding: 10px; padding-top: 0px;">
                             <label>Search Activities</label>
                             <input ng-model="controlsearch">
                         </md-input-container>
@@ -274,10 +289,10 @@
                     <div role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()">
 
                         <div id="variableControlFunctions">
-                            <div layout="row" flex>
+                            <div class="settings-button" layout="row" flex>
                                 <md-button flex ng-hide="selectedModule.ControlEditDisabled" ng-click="showAddVariableWindow($event)" class="md-raised">Add Variable</md-button>
                             </div>
-                            <div layout="row" flex>
+                            <div class="settings-button" layout="row" flex>
                                 <md-button flex ng-hide="selectedModule.ControlEditDisabled" ng-click="clearVariables($event)" class="md-raised">Clear</md-button>
                             </div>
                         </div>
@@ -305,10 +320,10 @@
                     <div role="tabpanel" id="tab2-content" aria-labelledby="tab2" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()">
 
                         <div>
-                            <div layout="row" flex>
+                            <div layout="row" class="settings-button" flex>
                                 <md-button flex class="md-raised">Duplicate</md-button>
                             </div>
-                            <div layout="row" flex>
+                            <div layout="row" class="settings-button" flex>
                                 <md-button flex ng-click="removeControl(selectedModule,$event)" class="md-raised md-warn">Remove</md-button>
                             </div>
                         </div>

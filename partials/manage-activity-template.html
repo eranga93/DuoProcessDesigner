@@ -19,7 +19,7 @@
             </md-button>
         </div>
     </md-toolbar>
-    <md-content>
+    <md-content >
         <div layout="row" layout-align="center start">
             <div flex>
                 <md-input-container flex>
@@ -42,12 +42,14 @@
             </div>
         </div>
     </md-content>
-    <md-content>
+
+    <md-content style="min-height:200px; overflow:hidden;">
+    <md-divider></md-divider>
         <div layout="column">
             <div>
                 <md-input-container>
                     <label>Activity Name</label>
-                    <input md-maxlength="50" required name="name" ng-model="activity.Name">
+                    <input md-maxlength="50" required name="name" ng-model="activity.Name" style="color: rgba(63, 81, 181, 1)">
                     <div ng-messages="activity.name.$error">
                         <div ng-message="required">Activity name is required.</div>
                     </div>
@@ -56,7 +58,7 @@
             <div>
                 <md-input-container>
                     <label>Description</label>
-                    <input required name="description" ng-model="activity.Description">
+                    <input required name="description" ng-model="activity.Description" style="color: rgba(63, 81, 181, 1);">
                     <div ng-messages="activity.description.$error">
                         <div ng-message="required">A description is required.</div>
                     </div>
