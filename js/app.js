@@ -6,7 +6,8 @@ var app = angular.module('processdesigner', [
   'ngMdIcons',
   'ngAnimate',
   'ngScrollbars',
-  'uiMicrokernel'
+  'uiMicrokernel',
+    'ngSanitize'
   ]);
 
 app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', '$mdToast', '$animate', '$mdBottomSheet', '$objectstore', '$mdSidenav', 'dataHandler', '$state','$interval', function ($scope, $rootScope, $http, $mdDialog, $mdToast, $animate, $mdBottomSheet, $objectstore, $mdSidenav, dataHandler, $state,$interval) {
@@ -1048,8 +1049,8 @@ app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', 
         });
     };
 
-function DialogController($scope, $mdDialog, message) {
-    $scope.message = message;
+function DialogController($scope,$sce,$mdDialog, message) {
+    $scope.message = $sce.trustAsHtml(message);
   $scope.hide = function() {
     $mdDialog.hide();
   };
