@@ -46,12 +46,13 @@
     <md-content style="min-height:200px; overflow:hidden;">
     <md-divider></md-divider>
         <div layout="column">
+            <form name="activityForm" novalidate>
             <div>
                 <md-input-container>
                     <label>Activity Name</label>
                     <input md-maxlength="50" required name="name" ng-model="activity.Name" style="color: rgba(63, 81, 181, 1)">
-                    <div ng-messages="activity.name.$error">
-                        <div ng-message="required">Activity name is required.</div>
+                    <div ng-messages>
+                        <div ng-if="activityForm.name.$invalid && activityForm.name.$dirty" ng-message="required">Activity name is required.</div>
                     </div>
                 </md-input-container>
             </div>
@@ -59,8 +60,8 @@
                 <md-input-container>
                     <label>Description</label>
                     <input required name="description" ng-model="activity.Description" style="color: rgba(63, 81, 181, 1);">
-                    <div ng-messages="activity.description.$error">
-                        <div ng-message="required">A description is required.</div>
+                    <div ng-messages>
+                        <div ng-message="required" ng-if="activityForm.description.$invalid && activityForm.description.$dirty">A description is required.</div>
                     </div>
                 </md-input-container>
             </div>
@@ -70,6 +71,7 @@
         <md-button ng-click="cancel()">Close</md-button>
         <md-button ng-disabled="true" ng-click="remove($event)">Remove</md-button>
         <md-button ng-disabled="true" ng-click="update($event)">Update</md-button>
-        <md-button ng-click="save(activity,$event)" class="md-primary">Insert</md-button>
+        <md-button ng-click="save(activity,$event)" class="md-primary" ng-disabled="activityForm.$invalid">Insert</md-button>
     </div>
+        </form>
 </md-dialog>
