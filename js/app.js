@@ -504,7 +504,8 @@ app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', 
         var element = document.createElement("div");
         var eleTitle = document.createElement("div");
         
-        var eleIcon = document.createElement("ng-md-icon");
+        var eleIcon = document.createElement("md-icon");
+        // var eleIcon = document.createElement("ng-md-icon");
         
         var eleTrue = document.createElement("div");
         var eleFalse = document.createElement("div");
@@ -514,7 +515,10 @@ app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', 
         element.setAttribute("class", "item " + control.Type);
         element.setAttribute("style", "left:10px ; top: 10px");
         
-        eleIcon.setAttribute("icon",control.Icon);
+        eleIcon.setAttribute("class",control.Icon);
+        eleIcon.setAttribute("style","height:100% !important");
+        //eleIcon.setAttribute("size","15");
+        //eleIcon.setAttribute("class","toolheader");
 
         eleTitle.setAttribute("class", "title");
         eleTitle.innerHTML = control.Name;
@@ -547,7 +551,9 @@ app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', 
             eleFalse.setAttribute("id", falsesideUUID);
             eleFalse.setAttribute("class", "connect");
 
+
             element.appendChild(eleFalse);
+            element.appendChild(eleIcon);
             element.appendChild(eleTitle);
             element.appendChild(eleTrue);
 
@@ -571,6 +577,7 @@ app.controller('mainController', ['$scope', '$rootScope', '$http', '$mdDialog', 
             eleForeach.setAttribute("id", foreachUUID);
             eleForeach.setAttribute("class", "connect");
 
+            element.appendChild(eleIcon);
             element.appendChild(eleTitle);
             element.appendChild(eleForeach);
 
